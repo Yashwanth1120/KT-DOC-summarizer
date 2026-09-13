@@ -119,13 +119,13 @@ def extract_text_response(agent_output: dict) -> str:
 formatted_agent_chain = (
     RunnableLambda(format_for_agent)
     | multi_tool_agent
-    | RunnableLambda(extract_text_response)
+    | RunnableLambda(extract_text_response)   # ✅ ensures only final text is returned
 ).with_types(input_type=AgentInput, output_type=str)
 
 # --- FastAPI Setup ---
 app = FastAPI(title="Multi-tool RAG Agent")
+# Route setup
 add_routes(app, formatted_agent_chain, path="/agent", playground_type="default")
-
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8000))
     uvicorn.run(app, host="0.0.0.0", port=port)
