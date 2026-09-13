@@ -1,0 +1,13 @@
+langchain-google-genai
+langchain-community
+langchain
+sentence-transformers
+faiss-cpu
+langchain-chroma
+langchain_text_splitters
+uvicorn
+fastapi
+langserve
+pydantic
+nest_asyncio
+requests
