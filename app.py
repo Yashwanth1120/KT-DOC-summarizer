@@ -56,7 +56,6 @@ vector_store_internet = build_vector_store(
 @tool(response_format="content_and_artifact")
 @lru_cache(maxsize=128)
 def retrieve_internet_context(query: str):
-    """Retrieve information regarding history of internet to help answer a query."""
     docs = vector_store_internet.similarity_search(query, k=2)
     serialized = "\n\n".join(
         f"Source: {doc.metadata}\nContent: {doc.page_content}" for doc in docs
@@ -73,7 +72,6 @@ vector_store_kt = build_vector_store(
 @tool(response_format="content_and_artifact")
 @lru_cache(maxsize=128)
 def retrieve_kt_context(query: str):
-    """Retrieve information from the InnovateCorp KT Guide to help answer a query."""
     docs = vector_store_kt.similarity_search(query, k=2)
     serialized = "\n\n".join(
         f"Source: {doc.metadata}\nContent: {doc.page_content}" for doc in docs
@@ -119,13 +117,13 @@ def extract_text_response(agent_output: dict) -> str:
 formatted_agent_chain = (
     RunnableLambda(format_for_agent)
     | multi_tool_agent
-    | RunnableLambda(extract_text_response)   # ✅ ensures only final text is returned
+    | RunnableLambda(extract_text_response)
 ).with_types(input_type=AgentInput, output_type=str)
 
 # --- FastAPI Setup ---
 app = FastAPI(title="Multi-tool RAG Agent")
-# Route setup
 add_routes(app, formatted_agent_chain, path="/agent", playground_type="default")
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8000))
     uvicorn.run(app, host="0.0.0.0", port=port)
