@@ -1,13 +1,23 @@
-langchain-google-genai
-langchain-community
-langchain
-sentence-transformers
-faiss-cpu
-langchain-chroma
-langchain_text_splitters
-uvicorn
-fastapi
-langserve
-pydantic
-nest_asyncio
-requests
+# Core web framework
+fastapi==0.115.0
+uvicorn==0.30.0
+
+# LangChain ecosystem
+langchain==0.2.14
+langchain-community==0.2.14
+langchain-google-genai==0.2.0
+langserve==0.0.48
+langchain-chroma==0.1.0
+langchain-text-splitters==0.2.0
+
+# Embeddings + vector search
+sentence-transformers==3.0.1
+faiss-cpu==1.8.0
+
+# Utilities
+pydantic==2.7.0
+nest-asyncio==1.6.0
+requests==2.32.3
+
+# CPU-only PyTorch (prevents CUDA/Triton bloat)
+torch --index-url https://download.pytorch.org/whl/cpu
