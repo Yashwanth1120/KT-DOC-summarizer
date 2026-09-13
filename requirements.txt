@@ -1,14 +1,9 @@
-fastapi==0.115.0
-uvicorn==0.30.0
-langchain==0.2.14
-langchain-community==0.2.14
-langchain-google-genai==4.4.0
-langserve==0.0.48
-langchain-chroma==0.1.0
-langchain-text-splitters==0.2.0
-sentence-transformers==3.0.1
-faiss-cpu==1.8.0
-pydantic==2.7.0
-nest-asyncio==1.6.0
-requests==2.32.3
-torch --index-url https://download.pytorch.org/whl/cpu
+
+fastapi
+uvicorn
+langserve
+langchain-core
+langchain-google-genai
+requests
+sse_starlette
+langchain
