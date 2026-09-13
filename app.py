@@ -56,6 +56,7 @@ vector_store_internet = build_vector_store(
 @tool(response_format="content_and_artifact")
 @lru_cache(maxsize=128)
 def retrieve_internet_context(query: str):
+    """Retrieve information regarding history of internet to help answer a query."""
     docs = vector_store_internet.similarity_search(query, k=2)
     serialized = "\n\n".join(
         f"Source: {doc.metadata}\nContent: {doc.page_content}" for doc in docs
@@ -72,6 +73,7 @@ vector_store_kt = build_vector_store(
 @tool(response_format="content_and_artifact")
 @lru_cache(maxsize=128)
 def retrieve_kt_context(query: str):
+    """Retrieve information from the InnovateCorp KT Guide to help answer a query."""
     docs = vector_store_kt.similarity_search(query, k=2)
     serialized = "\n\n".join(
         f"Source: {doc.metadata}\nContent: {doc.page_content}" for doc in docs
