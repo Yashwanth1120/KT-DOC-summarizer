@@ -5,7 +5,7 @@ uvicorn==0.30.0
 # LangChain ecosystem
 langchain==0.2.14
 langchain-community==0.2.14
-langchain-google-genai==0.2.0
+langchain-google-genai==4.4.0   # ✅ updated to latest valid version
 langserve==0.0.48
 langchain-chroma==0.1.0
 langchain-text-splitters==0.2.0
